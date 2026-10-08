@@ -24,6 +24,7 @@ BG = (11, 11, 11)
 GRID_MINOR = (22, 22, 22)
 GRID_MAJOR = (34, 34, 34)
 HAIRLINE = (30, 30, 30)
+CARD_BORDER = (52, 58, 66)
 SEP = (34, 34, 34)
 
 HN = "/System/Library/Fonts/HelveticaNeue.ttc"
@@ -109,8 +110,8 @@ def tracked(d, xy, text, font, fill, spacing=0.0):
 
 def banner(path, w, h, scale=1.0):
     """Dark header card: subtle grid texture, top-right glow, name, stats, bottom rule."""
-    img = Image.new("RGB", (w, h), BG)
-    d = ImageDraw.Draw(img, "RGBA")
+    layer = Image.new("RGB", (w, h), BG)
+    d = ImageDraw.Draw(layer, "RGBA")
 
     # --- texture grid (minor every cell, major every 4th line)
     cell = max(16, int(32 * scale))
@@ -128,11 +129,10 @@ def banner(path, w, h, scale=1.0):
         a = int(40 * (1 - i / R) ** 1.8)
         d.ellipse([cx - i, cy - i, cx + i, cy + i], fill=ACCENT + (a,))
 
-    # --- frame
-    d.rectangle([0, 0, w, 0], fill=HAIRLINE)
+    # --- accent rule along the bottom of the card
     d.rectangle([0, h - 3, w, h], fill=ACCENT)
 
-    pad = int(w * 0.062)
+    pad = int(w * 0.050)
 
     # --- kicker
     y = int(h * 0.132)
@@ -171,6 +171,13 @@ def banner(path, w, h, scale=1.0):
     d.text((x, y), url, font=urlf, fill=ACCENT)
     d.text((x, y + int(34 * scale)), "HUB", font=labf, fill=DIM)
 
+    r = max(4, int(13 * scale))
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], radius=r, fill=255)
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    img.paste(layer, (0, 0), mask)
+    ImageDraw.Draw(img).rounded_rectangle([0, 0, w - 1, h - 1], radius=r,
+                                          outline=CARD_BORDER + (255,), width=1)
     img.save(path, optimize=True)
     return path
 
