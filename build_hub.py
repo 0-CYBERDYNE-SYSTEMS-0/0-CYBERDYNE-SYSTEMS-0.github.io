@@ -70,8 +70,8 @@ GROUPS = [
         "qwikNotes", "mlx-audio-tts", "opencodex",
     ]),
     ("Sites &amp; Publications", [
-        "farmfriend-landing", "farmfriend-page", "desmond-digital", "sw33p3r",
-        "ff-article-preview",
+        "0-CYBERDYNE-SYSTEMS-0.github.io", "farmfriend-landing", "farmfriend-page",
+        "desmond-digital", "sw33p3r", "ff-article-preview",
     ]),
     ("Meta &amp; Assets", [
         ".github", "0-CYBERDYNE-SYSTEMS-0", "brand-assets", "battleships",

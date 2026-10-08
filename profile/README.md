@@ -6,11 +6,11 @@ AI systems engineer building autonomous agents, precision-agriculture tooling, a
 interfaces. I work across the stack — from Rust services and TypeScript runtimes to Python agent
 frameworks and macOS automation.
 
-[![Live sites](https://img.shields.io/badge/live_sites-5-00f0ff?style=flat-square&labelColor=0a0a0a)](https://0-cyberdyne-systems-0.github.io/) [![Public repos](https://img.shields.io/badge/public_repos-75-00f0ff?style=flat-square&labelColor=0a0a0a)](https://github.com/0-CYBERDYNE-SYSTEMS-0?tab=repositories) [![Since](https://img.shields.io/badge/since-2023-00f0ff?style=flat-square&labelColor=0a0a0a)](https://github.com/0-CYBERDYNE-SYSTEMS-0)
+**5** live sites &nbsp;·&nbsp; **76** public repositories &nbsp;·&nbsp; building since **2023**
 
-### **[→ Browse everything: 0-cyberdyne-systems-0.github.io](https://0-cyberdyne-systems-0.github.io/)**
+### [**→ Browse everything: 0-cyberdyne-systems-0.github.io**](https://0-cyberdyne-systems-0.github.io/)
 
-Live sites and all 75 public repositories, filterable. Everything below is on that page too.
+Live sites and all 76 public repositories, filterable. Everything below is on that page too.
 
 ---
 
@@ -26,7 +26,7 @@ Live sites and all 75 public repositories, filterable. Everything below is on th
 
 ---
 
-## Public repositories &nbsp;<code>75</code>
+## Public repositories &nbsp;<code>76</code>
 
 
 <details open>
@@ -129,11 +129,12 @@ Live sites and all 75 public repositories, filterable. Everything below is on th
 </details>
 
 <details>
-<summary><b>Sites &amp; Publications</b> &nbsp;<code>5</code></summary>
+<summary><b>Sites &amp; Publications</b> &nbsp;<code>6</code></summary>
 <br>
 
 | Repository | About |
 |---|---|
+| [**0-CYBERDYNE-SYSTEMS-0.github.io**](https://github.com/0-CYBERDYNE-SYSTEMS-0/0-CYBERDYNE-SYSTEMS-0.github.io) | Index of every live site and public repository on this account. |
 | [**desmond-digital**](https://github.com/0-CYBERDYNE-SYSTEMS-0/desmond-digital) | Anti-wrapper autonomous agent framework. Built on a farm, now scaling to factories. |
 | [**farmfriend-landing**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farmfriend-landing) | FarmFriend landing page and product showcase |
 | [**farmfriend-page**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farmfriend-page) | FarmFriend Consulting - Personal AI Assistant & Software Development |
@@ -187,4 +188,4 @@ Live sites and all 75 public repositories, filterable. Everything below is on th
 - **Twitter / X**: [@twodogseeds](https://x.com/twodogseeds)
 - **Web**: [farm-friend.com](https://farm-friend.com) &nbsp;·&nbsp; [desmond.digital](https://desmond.digital)
 
-<sub>Index generated 2026-10-08 · 75 public repositories · regenerate with <code>build_profile.py</code></sub>
+<sub>Index generated 2026-10-08 · 76 public repositories · regenerate with <code>build_profile.py</code></sub>

@@ -2,8 +2,8 @@
 """Generate the profile banner/OG images and the profile README for 0-CYBERDYNE-SYSTEMS-0.
 
 Outputs into ./profile/ :
-  assets/profile-banner.png   1280x380  (README header)
-  assets/og-image.png         1200x630  (link previews)
+  assets/profile-banner.png   1280x316  (README header)
+  assets/og-image.png         1200x620  (link previews)
   README.md                    profile-page README
 
 Repo data comes from live GitHub (or the build_hub.py cache).
@@ -18,11 +18,13 @@ OUT = ROOT / "profile"
 
 ACCENT = (0, 240, 255)
 FG = (255, 255, 255)
-MUTED = (136, 136, 136)
-DIM = (102, 102, 102)
-BG = (10, 10, 10)
-LINE = (26, 26, 26)
-DOT = (23, 23, 23)
+SUB = (158, 158, 158)
+DIM = (142, 142, 142)
+BG = (11, 11, 11)
+GRID_MINOR = (22, 22, 22)
+GRID_MAJOR = (34, 34, 34)
+HAIRLINE = (30, 30, 30)
+SEP = (34, 34, 34)
 
 HN = "/System/Library/Fonts/HelveticaNeue.ttc"
 MENLO = "/System/Library/Fonts/Menlo.ttc"
@@ -85,8 +87,8 @@ GROUPS = [
         "qwikNotes", "mlx-audio-tts", "opencodex",
     ]),
     ("Sites &amp; Publications", [
-        "farmfriend-landing", "farmfriend-page", "desmond-digital", "sw33p3r",
-        "ff-article-preview",
+        "0-CYBERDYNE-SYSTEMS-0.github.io", "farmfriend-landing", "farmfriend-page",
+        "desmond-digital", "sw33p3r", "ff-article-preview",
     ]),
     ("Meta &amp; Assets", [".github", "0-CYBERDYNE-SYSTEMS-0", "brand-assets",
                            "battleships", "omarchy_", "omarchy_clipboard", "CC_Leak"]),
@@ -96,50 +98,84 @@ GROUPS[-1][1].extend(sorted(set(PUB) - placed))
 assert {n for _, names in GROUPS for n in names} == set(PUB), "category coverage drift"
 
 # ---------------------------------------------------------------- images
+def tracked(d, xy, text, font, fill, spacing=0.0):
+    """Draw text with extra letter-spacing (Pillow has none built in)."""
+    x, y = xy
+    for ch in text:
+        d.text((x, y), ch, font=font, fill=fill)
+        x += d.textlength(ch, font=font) + spacing
+    return x
+
+
 def banner(path, w, h, scale=1.0):
+    """Dark header card: subtle grid texture, top-right glow, name, stats, bottom rule."""
     img = Image.new("RGB", (w, h), BG)
     d = ImageDraw.Draw(img, "RGBA")
 
-    for x in range(0, w, 28):
-        for y in range(0, h, 28):
-            d.point((x, y), fill=DOT + (255,))
-    for i in range(240, 0, -6):
-        a = int(26 * (i / 240) ** 2.4)
-        d.ellipse([w - 210 - i, -150 - i, w - 210 + i, -150 + i], fill=ACCENT + (a,))
+    # --- texture grid (minor every cell, major every 4th line)
+    cell = max(16, int(32 * scale))
+    for x in range(0, w + 1, cell):
+        c = GRID_MAJOR if (x // cell) % 4 == 0 else GRID_MINOR
+        d.line([(x, 0), (x, h)], fill=c + (255,))
+    for y in range(0, h + 1, cell):
+        c = GRID_MAJOR if (y // cell) % 4 == 0 else GRID_MINOR
+        d.line([(0, y), (w, y)], fill=c + (255,))
+
+    # --- glow spilling in from the top-right corner (stays above the stats row)
+    R = int(w * 0.36)
+    cx, cy = int(w * 1.02), int(-h * 0.34)
+    for i in range(R, 0, -3):
+        a = int(40 * (1 - i / R) ** 1.8)
+        d.ellipse([cx - i, cy - i, cx + i, cy + i], fill=ACCENT + (a,))
+
+    # --- frame
+    d.rectangle([0, 0, w, 0], fill=HAIRLINE)
+    d.rectangle([0, h - 3, w, h], fill=ACCENT)
 
     pad = int(w * 0.062)
-    d.rectangle([0, h - 3, w, h], fill=ACCENT)
-    d.rectangle([0, 0, w, 1], fill=LINE)
 
-    y = int(h * 0.15)
+    # --- kicker
+    y = int(h * 0.132)
     d.text((pad, y), "INDEX  \u00b7  EVERYTHING PUBLISHED", font=mono(int(15 * scale), True), fill=ACCENT)
-    y += int(40 * scale)
-    d.text((pad, y), "0-CYBERDYNE-SYSTEMS-0", font=sans(int(54 * scale), "bold"), fill=FG)
-    y += int(74 * scale)
+
+    # --- title (slightly loosened tracking so the hyphens don't clog)
+    y = int(h * 0.252)
+    tracked(d, (pad, y), "0-CYBERDYNE-SYSTEMS-0", sans(int(52 * scale), "bold"), FG,
+            spacing=1.2 * scale)
+
+    # --- subtitle
+    y = int(h * 0.478)
     d.text((pad, y), "R. Desmond \u2014 autonomous agents \u00b7 precision agriculture \u00b7 terminal-native interfaces",
-           font=sans(int(21 * scale), "light"), fill=MUTED)
-    y += int(50 * scale)
+           font=sans(int(21 * scale), "light"), fill=SUB)
 
-    stats = [(str(len(LIVE)), "LIVE SITES"), (str(N), "PUBLIC REPOSITORIES"), ("2023", "BUILDING SINCE")]
+    # --- rule: more air above than below so it groups with the stats row
+    ry = int(h * 0.655)
+    d.line([(pad, ry), (w - pad, ry)], fill=SEP + (255,))
+
+    # --- stats band: flow-laid with equal gutters, URL as the 4th rightmost anchor
     labf = mono(int(11 * scale))
-    col = max(int(d.textlength(lab, font=labf)) for _, lab in stats) + int(36 * scale)
-    col = min(col, (w - 2 * pad) // len(stats) + int(20 * scale))
+    urlf = mono(int(14 * scale))
+    numf = mono(int(25 * scale), True)
+    url = "0-cyberdyne-systems-0.github.io"
+    y = int(h * 0.712)
+    stats = [(str(len(LIVE)), "LIVE SITES"), (str(N), "PUBLIC REPOSITORIES"), ("2023", "BUILDING SINCE")]
+    widths = [max(int(d.textlength(v, font=numf)), int(d.textlength(l, font=labf)))
+              for v, l in stats]
+    urlw = max(int(d.textlength(url, font=urlf)), int(d.textlength("INDEX", font=labf)))
+    gutter = ((w - 2 * pad) - sum(widths) - urlw) // len(stats)
     x = pad
-    for val, lab in stats:
-        d.text((x, y), val, font=mono(int(24 * scale), True), fill=FG)
-        d.text((x, y + int(34 * scale)), lab, font=labf, fill=DIM)
-        x += col
-
-    d.rectangle([pad, int(h * 0.79), pad + int(10 * scale), int(h * 0.79) + int(10 * scale)],
-                fill=ACCENT)
-    d.text((pad + int(20 * scale), int(h * 0.78)), "0-cyberdyne-systems-0.github.io",
-           font=mono(int(14 * scale)), fill=ACCENT)
+    for (val, lab), cw in zip(stats, widths):
+        d.text((x, y), val, font=numf, fill=FG)
+        d.text((x, y + int(33 * scale)), lab, font=labf, fill=DIM)
+        x += cw + gutter
+    d.text((x, y), url, font=urlf, fill=ACCENT)
+    d.text((x, y + int(34 * scale)), "HUB", font=labf, fill=DIM)
 
     img.save(path, optimize=True)
     return path
 
-banner(OUT / "assets/profile-banner.png", 1280, 330)
-banner(OUT / "assets/og-image.png", 1200, 560, scale=1.28)
+banner(OUT / "assets/profile-banner.png", 1280, 316)
+banner(OUT / "assets/og-image.png", 1200, 620, scale=1.30)
 
 # ---------------------------------------------------------------- README
 def esc(s):
@@ -178,14 +214,8 @@ for i, (gname, names) in enumerate(GROUPS):
 </details>
 """
 
-badges = (
-    f"[![Live sites](https://img.shields.io/badge/live_sites-{len(LIVE)}-00f0ff?style=flat-square&labelColor=0a0a0a)]"
-    f"(https://0-cyberdyne-systems-0.github.io/) "
-    f"[![Public repos](https://img.shields.io/badge/public_repos-{N}-00f0ff?style=flat-square&labelColor=0a0a0a)]"
-    f"(https://github.com/0-CYBERDYNE-SYSTEMS-0?tab=repositories) "
-    f"[![Since](https://img.shields.io/badge/since-2023-00f0ff?style=flat-square&labelColor=0a0a0a)]"
-    f"(https://github.com/0-CYBERDYNE-SYSTEMS-0)"
-)
+stats_line = (f"**{len(LIVE)}** live sites &nbsp;·&nbsp; **{N}** public repositories "
+              f"&nbsp;·&nbsp; building since **2023**")
 
 README = f"""<img src="https://0-cyberdyne-systems-0.github.io/assets/profile-banner.png" alt="0-CYBERDYNE-SYSTEMS-0 — everything published, in one place" width="100%">
 
@@ -195,9 +225,9 @@ AI systems engineer building autonomous agents, precision-agriculture tooling, a
 interfaces. I work across the stack — from Rust services and TypeScript runtimes to Python agent
 frameworks and macOS automation.
 
-{badges}
+{stats_line}
 
-### **[→ Browse everything: 0-cyberdyne-systems-0.github.io](https://0-cyberdyne-systems-0.github.io/)**
+### [**\u2192 Browse everything: 0-cyberdyne-systems-0.github.io**](https://0-cyberdyne-systems-0.github.io/)
 
 Live sites and all {N} public repositories, filterable. Everything below is on that page too.
 
