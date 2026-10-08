@@ -123,16 +123,16 @@ def banner(path, w, h, scale=1.0):
         d.line([(0, y), (w, y)], fill=c + (255,))
 
     # --- glow spilling in from the top-right corner (stays above the stats row)
-    R = int(w * 0.36)
+    R = int(w * 0.30)
     cx, cy = int(w * 1.02), int(-h * 0.34)
     for i in range(R, 0, -3):
-        a = int(40 * (1 - i / R) ** 1.8)
+        a = int(26 * (1 - i / R) ** 1.8)
         d.ellipse([cx - i, cy - i, cx + i, cy + i], fill=ACCENT + (a,))
 
     # --- accent rule along the bottom of the card
     d.rectangle([0, h - 3, w, h], fill=ACCENT)
 
-    pad = int(w * 0.050)
+    pad = int(w * 0.034)
 
     # --- kicker
     y = int(h * 0.132)
@@ -171,7 +171,7 @@ def banner(path, w, h, scale=1.0):
     d.text((x, y), url, font=urlf, fill=ACCENT)
     d.text((x, y + int(34 * scale)), "HUB", font=labf, fill=DIM)
 
-    r = max(4, int(13 * scale))
+    r = max(4, int(9 * scale))
     mask = Image.new("L", (w, h), 0)
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], radius=r, fill=255)
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
@@ -225,6 +225,8 @@ stats_line = (f"**{len(LIVE)}** live sites &nbsp;·&nbsp; **{N}** public reposit
               f"&nbsp;·&nbsp; building since **2023**")
 
 README = f"""<img src="https://0-cyberdyne-systems-0.github.io/assets/profile-banner.png" alt="0-CYBERDYNE-SYSTEMS-0 — everything published, in one place" width="100%">
+
+<br>
 
 ### R. Desmond
 

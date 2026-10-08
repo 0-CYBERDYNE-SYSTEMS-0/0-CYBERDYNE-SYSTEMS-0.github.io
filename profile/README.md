@@ -1,5 +1,7 @@
 <img src="https://0-cyberdyne-systems-0.github.io/assets/profile-banner.png" alt="0-CYBERDYNE-SYSTEMS-0 — everything published, in one place" width="100%">
 
+<br>
+
 ### R. Desmond
 
 AI systems engineer building autonomous agents, precision-agriculture tooling, and terminal-native
