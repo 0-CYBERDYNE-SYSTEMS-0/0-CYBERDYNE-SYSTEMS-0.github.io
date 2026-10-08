@@ -24,7 +24,7 @@ BG = (11, 11, 11)
 GRID_MINOR = (22, 22, 22)
 GRID_MAJOR = (34, 34, 34)
 HAIRLINE = (30, 30, 30)
-CARD_BORDER = (52, 58, 66)
+CARD_BORDER = (58, 66, 78)
 SEP = (34, 34, 34)
 
 HN = "/System/Library/Fonts/HelveticaNeue.ttc"
@@ -132,7 +132,7 @@ def banner(path, w, h, scale=1.0):
     # --- accent rule along the bottom of the card
     d.rectangle([0, h - 3, w, h], fill=ACCENT)
 
-    pad = int(w * 0.034)
+    pad = int(w * 0.026)
 
     # --- kicker
     y = int(h * 0.132)
