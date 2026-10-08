@@ -132,7 +132,7 @@ def banner(path, w, h, scale=1.0):
     # --- accent rule along the bottom of the card
     d.rectangle([0, h - 3, w, h], fill=ACCENT)
 
-    pad = int(w * 0.026)
+    pad = int(w * 0.020)
 
     # --- kicker
     y = int(h * 0.132)
