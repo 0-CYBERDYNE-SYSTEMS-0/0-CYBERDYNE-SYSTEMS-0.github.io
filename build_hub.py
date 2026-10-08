@@ -22,6 +22,9 @@ else:
 pub = {r["name"]: r for r in repos if not r["isPrivate"]}
 
 LIVE = [
+    ("The Index — you are here", "__self__",
+     "This page. Links every live site and public repository on the account; filterable, and regenerated from live GitHub data.",
+     "Hub", "main", "2026-10-08"),
     ("FarmFriend — Environmental Controller",
      "farmfriend-landing",
      "The product page for the FarmFriend environmental controller. No subscriptions, no wiring — smart plugs from any store, AI that learns the grow. Pricing tiers, FAQ, April 2026 pre-order.",
@@ -116,10 +119,13 @@ def repo_card(name):
 
 live_cards = ""
 for title, repo, blurb, kind, src, built in LIVE:
-    live_cards += f'''<a class="card live" href="https://0-cyberdyne-systems-0.github.io/{repo}/" target="_blank" rel="noopener">
+    href = ("https://0-cyberdyne-systems-0.github.io/" if repo == "__self__"
+            else f"https://0-cyberdyne-systems-0.github.io/{repo}/")
+    tail = "you are here" if repo == "__self__" else f"{repo}/"
+    live_cards += f'''<a class="card live" href="{href}" target="_blank" rel="noopener">
 <div class="card-h"><span class="pill">LIVE</span><span class="repo-name">{title}</span></div>
 <p class="repo-desc">{blurb}</p>
-<div class="meta"><span class="mono">{repo}/</span><span class="mono">{src}</span><span class="mono">built {built}</span></div></a>'''
+<div class="meta"><span class="mono">{tail}</span><span class="mono">{src}</span><span class="mono">built {built}</span></div></a>'''
 
 groups_html = ""
 for gname, names in GROUPS:
@@ -239,7 +245,7 @@ HTML = f'''<!DOCTYPE html>
   <p class="lede">Live sites and public repositories. FarmFriend runs on the farm; Desmond Digital
   took the same machinery to the factory; the rest is tooling — agents, harnesses, terminal work.</p>
   <div class="stats">
-    <div class="stat"><b>4</b><span>Live sites</span></div>
+    <div class="stat"><b>{len(LIVE)}</b><span>Live sites</span></div>
     <div class="stat"><b>{n_pub}</b><span>Public repos</span></div>
     <div class="stat"><b>2023</b><span>Building since</span></div>
   </div>
@@ -252,7 +258,7 @@ HTML = f'''<!DOCTYPE html>
 </header>
 
 <section id="live">
-  <h2>Live sites <span class="count">4</span></h2>
+  <h2>Live sites <span class="count">{len(LIVE)}</span></h2>
   <div class="grid">{live_cards}</div>
 </section>
 
@@ -324,7 +330,7 @@ favicon = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 </svg>
 '''
 
-readme = f'''# 0-CYBERDYNE-SYSTEMS-0 — Index
+_unused_readme = f'''# 0-CYBERDYNE-SYSTEMS-0 — Index
 
 Source for <https://0-cyberdyne-systems-0.github.io/> — the hub that indexes every live site
 and public repository on this account.
@@ -335,7 +341,7 @@ Repository cards are generated from live GitHub data (`build_hub.py` in the work
 Deployed by GitHub Pages from `main` (legacy branch build).
 '''
 
-for name, body in (("index.html", HTML), ("favicon.svg", favicon), ("README.md", readme), (".nojekyll", "")):
+for name, body in (("index.html", HTML), ("favicon.svg", favicon), (".nojekyll", "")):
     (OUT_DIR / name).write_text(body, encoding="utf-8")
     print("wrote", OUT_DIR / name, len(body), "bytes")
 print("repos in hub:", n_pub, "| groups:", len(GROUPS))
