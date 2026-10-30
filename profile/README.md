@@ -8,11 +8,16 @@ AI systems engineer building autonomous agents, precision-agriculture tooling, a
 interfaces. I work across the stack — from Rust services and TypeScript runtimes to Python agent
 frameworks and macOS automation.
 
-**5** live sites &nbsp;·&nbsp; **76** public repositories &nbsp;·&nbsp; building since **2023**
+**7** live sites &nbsp;·&nbsp; **82** public repositories &nbsp;·&nbsp; building since **2023**
 
 ### [**→ Browse everything: 0-cyberdyne-systems-0.github.io**](https://0-cyberdyne-systems-0.github.io/)
 
-Live sites and all 76 public repositories, filterable. Everything below is on that page too.
+Live sites and all 82 public repositories, filterable. Everything below is on that page too.
+
+**Start here:** [Product pages](https://0-cyberdyne-systems-0.github.io/split-landing-pages/) ·
+[FarmFriend Land Plan](https://0-cyberdyne-systems-0.github.io/ff-land-plan/) ·
+[Desmond Digital](https://0-cyberdyne-systems-0.github.io/desmond-digital/) ·
+[Field docs](https://0-cyberdyne-systems-0.github.io/sw33p3r/)
 
 ---
 
@@ -20,15 +25,17 @@ Live sites and all 76 public repositories, filterable. Everything below is on th
 
 | Site | Kind | What it is |
 |---|---|---|
-| [**The Index**](https://0-cyberdyne-systems-0.github.io/) | `Hub` | This page's hub — every live site and public repository, filterable. |
-| [**FarmFriend — Environmental Controller**](https://0-cyberdyne-systems-0.github.io/farmfriend-landing/) | `Product landing` | FarmFriend environmental controller — no subscriptions, no wiring. Pricing, FAQ, pre-order. |
-| [**Desmond Digital**](https://0-cyberdyne-systems-0.github.io/desmond-digital/) | `Company site` | Headless autonomous agents that run unattended for days. Manifesto, architecture, pricing. |
-| [**FarmFriend Consulting**](https://0-cyberdyne-systems-0.github.io/farmfriend-page/) | `One-pager` | FarmFriend consulting card — AI &amp; software development, booking, direct links. |
-| [**sw33p3r — Field Docs**](https://0-cyberdyne-systems-0.github.io/sw33p3r/) | `Artifact docs` | Flipper Zero counter-surveillance suite: room-sweep control map and printable field guide. |
+| [**The Index — you are here**](https://0-cyberdyne-systems-0.github.io/) | `Hub` | This page. Links every live site and public repository on the account; filterable, and regenerated from live GitHub data. |
+| [**Product pages — Quorum, Lucida, Studio**](https://0-cyberdyne-systems-0.github.io/split-landing-pages/) | `Product pages` | Three product pages built from real screenshots: an LLM roundtable, a page-by-page PDF teacher, and a natural-language creative coding workbench. |
+| [**FarmFriend Land Plan**](https://0-cyberdyne-systems-0.github.io/ff-land-plan/) | `Product page` | Draw the beds the way they sit on the ground. One cell is 25 cm; the plan stays on your computer. |
+| [**Desmond Digital**](https://0-cyberdyne-systems-0.github.io/desmond-digital/) | `Company site` | The agency site. Headless autonomous agents that run unattended for days. Manifesto, architecture, pricing, services. |
+| [**FarmFriend Consulting**](https://0-cyberdyne-systems-0.github.io/farmfriend-page/) | `One-pager` | One-page consulting card: AI and software development, consultation booking, direct links out. |
+| [**FarmFriend — Environmental Controller**](https://0-cyberdyne-systems-0.github.io/farmfriend-landing/) | `Product landing` | The product page for the FarmFriend environmental controller. Smart plugs from any store, no subscriptions, pricing and pre-order. |
+| [**sw33p3r — Field Docs**](https://0-cyberdyne-systems-0.github.io/sw33p3r/) | `Artifact docs` | The published artifact set for the Flipper Zero counter-surveillance suite: room-sweep control map, printable field guide, hardware alternatives. |
 
 ---
 
-## Public repositories &nbsp;<code>76</code>
+## Public repositories &nbsp;<code>82</code>
 
 
 <details open>
@@ -111,16 +118,18 @@ Live sites and all 76 public repositories, filterable. Everything below is on th
 </details>
 
 <details>
-<summary><b>Terminal, Themes &amp; Dev Tools</b> &nbsp;<code>11</code></summary>
+<summary><b>Terminal, Themes &amp; Dev Tools</b> &nbsp;<code>13</code></summary>
 <br>
 
 | Repository | About |
 |---|---|
+| [**ffmpeg-skill**](https://github.com/0-CYBERDYNE-SYSTEMS-0/ffmpeg-skill) | Local video editor for coding agents: 42 FFmpeg tools with a machine-readable contract and an MCP server, for Claude… |
 | [**macOS-terminal-theme-picker**](https://github.com/0-CYBERDYNE-SYSTEMS-0/macOS-terminal-theme-picker) | Native macOS theme picker for Apple Terminal |
 | [**MermaidMagic**](https://github.com/0-CYBERDYNE-SYSTEMS-0/MermaidMagic) | Interactive Mermaid diagram editor with real-time preview and natural language generation |
 | [**mlx-audio-tts**](https://github.com/0-CYBERDYNE-SYSTEMS-0/mlx-audio-tts) | MLX-Audio based text-to-speech web application with voice cloning capabilities |
 | [**opencodex**](https://github.com/0-CYBERDYNE-SYSTEMS-0/opencodex) | Universal provider proxy for OpenAI Codex & Claude Code — use any LLM (Claude, Gemini, Grok, DeepSeek, Ollama…) with… |
 | [**qwikNotes**](https://github.com/0-CYBERDYNE-SYSTEMS-0/qwikNotes) | A simple macOS menu bar app for quick notes - AI prompts, API keys, and more. |
+| [**rtl-sdr-station**](https://github.com/0-CYBERDYNE-SYSTEMS-0/rtl-sdr-station) | Receive-only RTL-SDR toolkit for a Raspberry Pi: a control CLI, a multi-channel scanner daemon with RF-power squelch,… |
 | [**shortcut-genius**](https://github.com/0-CYBERDYNE-SYSTEMS-0/shortcut-genius) | AI-powered iOS Shortcut AI powered IDE. text to signed working shortcuts.  Agent tools for local data. |
 | [**term-fig**](https://github.com/0-CYBERDYNE-SYSTEMS-0/term-fig) | Web-based terminal config generator for WezTerm, Kitty, Ghostty, and iTerm2 |
 | [**Terminal-Color-Tool**](https://github.com/0-CYBERDYNE-SYSTEMS-0/Terminal-Color-Tool) | Generate color themes from images, tweak them, save them and export to all of today's modern terminal shell apps. |
@@ -131,7 +140,19 @@ Live sites and all 76 public repositories, filterable. Everything below is on th
 </details>
 
 <details>
-<summary><b>Sites &amp; Publications</b> &nbsp;<code>6</code></summary>
+<summary><b>Products &amp; Apps</b> &nbsp;<code>3</code></summary>
+<br>
+
+| Repository | About |
+|---|---|
+| [**lucida**](https://github.com/0-CYBERDYNE-SYSTEMS-0/lucida) | Turn PDF pages into interactive rooms with text, charts, and locally generated images. No API key required. |
+| [**possibility-studio**](https://github.com/0-CYBERDYNE-SYSTEMS-0/possibility-studio) | Local workbench for exploring creative directions as runnable, standalone HTML prototypes. |
+| [**quorum**](https://github.com/0-CYBERDYNE-SYSTEMS-0/quorum) | The AI boardroom for consequential business decisions. Directors deliberate in rounds, disagree on the record, and le… |
+
+</details>
+
+<details>
+<summary><b>Sites &amp; Publications</b> &nbsp;<code>7</code></summary>
 <br>
 
 | Repository | About |
@@ -141,6 +162,7 @@ Live sites and all 76 public repositories, filterable. Everything below is on th
 | [**farmfriend-landing**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farmfriend-landing) | FarmFriend landing page and product showcase |
 | [**farmfriend-page**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farmfriend-page) | FarmFriend Consulting - Personal AI Assistant & Software Development |
 | [**ff-article-preview**](https://github.com/0-CYBERDYNE-SYSTEMS-0/ff-article-preview) | AI-generated article preview renderer for FarmFriend content pipeline |
+| [**split-landing-pages**](https://github.com/0-CYBERDYNE-SYSTEMS-0/split-landing-pages) | Product pages for Quorum, Lucida, and Possibility Studio. Real screenshots, no build step. |
 | [**sw33p3r**](https://github.com/0-CYBERDYNE-SYSTEMS-0/sw33p3r) | Flipper Zero counter-surveillance suite: Sub-GHz RF sweep, WiFi/BLE (Marauder via BFFB), GPS, and safety-gated RF car… |
 
 </details>
@@ -190,4 +212,4 @@ Live sites and all 76 public repositories, filterable. Everything below is on th
 - **Twitter / X**: [@twodogseeds](https://x.com/twodogseeds)
 - **Web**: [farm-friend.com](https://farm-friend.com) &nbsp;·&nbsp; [desmond.digital](https://desmond.digital)
 
-<sub>Index generated 2026-10-08 · 76 public repositories · regenerate with <code>build_profile.py</code></sub>
+<sub>Index generated 2026-10-30 · 82 public repositories · regenerate with <code>build_profile.py</code></sub>

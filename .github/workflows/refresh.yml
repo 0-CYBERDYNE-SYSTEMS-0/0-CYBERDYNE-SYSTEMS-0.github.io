@@ -1,0 +1,37 @@
+name: Refresh index
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "index.html"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate from live GitHub data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HUB_CACHE_DIR: ${{ runner.temp }}
+        run: python3 build_hub.py --fresh
+
+      - name: Commit if the index changed
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "index-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html favicon.svg .nojekyll sites.json
+          git commit -m "Refresh index from live GitHub data"
+          git push

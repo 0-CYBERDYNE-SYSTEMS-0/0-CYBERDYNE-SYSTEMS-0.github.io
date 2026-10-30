@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Generate the 0-CYBERDYNE-SYSTEMS-0.github.io hub page from live GitHub data."""
-import json, html, re, datetime, pathlib, sys
+import json, html, re, datetime, pathlib, sys, os, subprocess, concurrent.futures
 
-SCRATCH = pathlib.Path("/Users/scrimwiggins/.hermes/cache/scratch")
+SCRATCH = pathlib.Path(os.environ.get("HUB_CACHE_DIR", "/Users/scrimwiggins/.hermes/cache/scratch"))
 OUT_DIR = pathlib.Path(__file__).resolve().parent if (pathlib.Path(__file__).resolve().parent / "index.html").exists() \
     else pathlib.Path.home() / "Documents/Agent-Workspace/deliverables/2026-10/github-pages-hub"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -21,27 +21,75 @@ else:
     CACHE.write_text(out)
 pub = {r["name"]: r for r in repos if not r["isPrivate"]}
 
-LIVE = [
-    ("The Index — you are here", "__self__",
-     "This page. Links every live site and public repository on the account; filterable, and regenerated from live GitHub data.",
-     "Hub", "main", "2026-10-08"),
-    ("FarmFriend — Environmental Controller",
-     "farmfriend-landing",
-     "The product page for the FarmFriend environmental controller. No subscriptions, no wiring — smart plugs from any store, AI that learns the grow. Pricing tiers, FAQ, April 2026 pre-order.",
-     "Product landing", "master", "2026-04-16"),
-    ("Desmond Digital",
-     "desmond-digital",
-     "The agency site. Headless autonomous agents that run unattended for days. Manifesto, architecture, pricing, services — built where it mattered.",
-     "Company site", "main", "2026-04-16"),
-    ("FarmFriend Consulting",
-     "farmfriend-page",
-     "One-page consulting card: AI &amp; software development, consultation booking, direct links out to Telegram, GitHub and Clawdbot.",
-     "One-pager", "gh-pages", "2026-01-25"),
-    ("sw33p3r — Field Docs",
-     "sw33p3r",
-     "Not a marketing site: the published artifact set for the Flipper Zero counter-surveillance suite. Room-sweep control map, printable field guide, hardware alternatives, build-your-own-standalone.",
-     "Artifact docs", "main:/docs", "2026-10-06"),
-]
+SITE_META = {
+    "0-CYBERDYNE-SYSTEMS-0.github.io": (
+        "The Index — you are here", "Hub",
+        "This page. Links every live site and public repository on the account; filterable, and regenerated from live GitHub data."),
+    "split-landing-pages": (
+        "Product pages — Quorum, Lucida, Studio", "Product pages",
+        "Three product pages built from real screenshots: an LLM roundtable, a page-by-page PDF teacher, and a natural-language creative coding workbench."),
+    "ff-land-plan": (
+        "FarmFriend Land Plan", "Product page",
+        "Draw the beds the way they sit on the ground. One cell is 25 cm; the plan stays on your computer."),
+    "farmfriend-landing": (
+        "FarmFriend — Environmental Controller", "Product landing",
+        "The product page for the FarmFriend environmental controller. Smart plugs from any store, no subscriptions, pricing and pre-order."),
+    "desmond-digital": (
+        "Desmond Digital", "Company site",
+        "The agency site. Headless autonomous agents that run unattended for days. Manifesto, architecture, pricing, services."),
+    "farmfriend-page": (
+        "FarmFriend Consulting", "One-pager",
+        "One-page consulting card: AI and software development, consultation booking, direct links out."),
+    "sw33p3r": (
+        "sw33p3r — Field Docs", "Artifact docs",
+        "The published artifact set for the Flipper Zero counter-surveillance suite: room-sweep control map, printable field guide, hardware alternatives."),
+}
+
+
+def _pages(repo):
+    p = subprocess.run(["gh", "api", f"repos/0-CYBERDYNE-SYSTEMS-0/{repo}/pages"],
+                       capture_output=True, text=True)
+    if p.returncode != 0:
+        return None
+    try:
+        return json.loads(p.stdout)
+    except Exception:
+        return None
+
+
+def discover_sites():
+    names = sorted(pub)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+        pages = dict(zip(names, ex.map(_pages, names)))
+    rows = []
+    for name in names:
+        d = pages.get(name) or {}
+        if name != "0-CYBERDYNE-SYSTEMS-0.github.io" and not d.get("html_url"):
+            continue
+        meta = SITE_META.get(name)
+        if meta:
+            title, kind, blurb = meta
+        else:
+            title = name.replace("-", " ").replace("_", " ").title()
+            kind = "Docs" if (d.get("source") or {}).get("path", "/").strip("/") else "Site"
+            blurb = (pub[name].get("description") or "").strip() or "Published site."
+        branch = (d.get("source") or {}).get("branch") or "main"
+        path = (d.get("source") or {}).get("path") or "/"
+        src = branch + (":" + path if path not in ("", "/") else "")
+        updated = (pub[name].get("pushedAt") or "")[:10]
+        rows.append((title, name, blurb, kind, src, updated))
+    def rank(r):
+        if r[1] == "0-CYBERDYNE-SYSTEMS-0.github.io": return 0
+        if r[1] == "split-landing-pages": return 1
+        if r[1] == "ff-land-plan": return 2
+        return 3
+    rows.sort(key=lambda r: (rank(r), r[0].lower()))
+    return rows
+
+
+LIVE = discover_sites()
+pathlib.Path(__file__).with_name("sites.json").write_text(
+    json.dumps([{"slug": r[1], "title": r[0], "blurb": r[2], "kind": r[3], "source": r[4], "updated": r[5]} for r in LIVE], indent=1))
 
 GROUPS = [
     ("FarmFriend &amp; Agriculture", [
@@ -67,11 +115,14 @@ GROUPS = [
     ("Terminal, Themes &amp; Dev Tools", [
         "macOS-terminal-theme-picker", "terminal-theme-studio", "Terminal-Color-Tool",
         "term-fig", "tui-studio", "shortcut-genius", "MermaidMagic", "wordPlay",
-        "qwikNotes", "mlx-audio-tts", "opencodex",
+        "qwikNotes", "mlx-audio-tts", "opencodex", "ffmpeg-skill", "rtl-sdr-station",
+    ]),
+    ("Products &amp; Apps", [
+        "quorum", "lucida", "possibility-studio",
     ]),
     ("Sites &amp; Publications", [
-        "0-CYBERDYNE-SYSTEMS-0.github.io", "farmfriend-landing", "farmfriend-page",
-        "desmond-digital", "sw33p3r", "ff-article-preview",
+        "0-CYBERDYNE-SYSTEMS-0.github.io", "split-landing-pages", "farmfriend-landing",
+        "farmfriend-page", "desmond-digital", "sw33p3r", "ff-article-preview",
     ]),
     ("Meta &amp; Assets", [
         ".github", "0-CYBERDYNE-SYSTEMS-0", "brand-assets", "battleships",
@@ -119,13 +170,13 @@ def repo_card(name):
 
 live_cards = ""
 for title, repo, blurb, kind, src, built in LIVE:
-    href = ("https://0-cyberdyne-systems-0.github.io/" if repo == "__self__"
+    href = ("https://0-cyberdyne-systems-0.github.io/" if repo == "0-CYBERDYNE-SYSTEMS-0.github.io"
             else f"https://0-cyberdyne-systems-0.github.io/{repo}/")
-    tail = "you are here" if repo == "__self__" else f"{repo}/"
+    tail = "you are here" if repo == "0-CYBERDYNE-SYSTEMS-0.github.io" else f"{repo}/"
     live_cards += f'''<a class="card live" href="{href}" target="_blank" rel="noopener">
 <div class="card-h"><span class="pill">LIVE</span><span class="repo-name">{title}</span></div>
 <p class="repo-desc">{blurb}</p>
-<div class="meta"><span class="mono">{tail}</span><span class="mono">{src}</span><span class="mono">built {built}</span></div></a>'''
+<div class="meta"><span class="mono">{tail}</span><span class="mono">{src}</span><span class="mono">updated {built}</span></div></a>'''
 
 groups_html = ""
 for gname, names in GROUPS:
@@ -250,9 +301,13 @@ HTML = f'''<!DOCTYPE html>
     <div class="stat"><b>2023</b><span>Building since</span></div>
   </div>
   <div class="toplinks">
-    <a href="https://github.com/0-CYBERDYNE-SYSTEMS-0" target="_blank" rel="noopener">GitHub &rarr;</a>
+    <a href="#live">All {len(LIVE)} live sites &darr;</a>
+    <a href="https://0-cyberdyne-systems-0.github.io/split-landing-pages/" target="_blank" rel="noopener">Product pages &rarr;</a>
+    <a href="https://0-cyberdyne-systems-0.github.io/ff-land-plan/" target="_blank" rel="noopener">Land Plan &rarr;</a>
+    <a href="https://0-cyberdyne-systems-0.github.io/sw33p3r/" target="_blank" rel="noopener">Field docs &rarr;</a>
     <a href="https://farm-friend.com" target="_blank" rel="noopener">farm-friend.com &rarr;</a>
     <a href="https://desmond.digital" target="_blank" rel="noopener">desmond.digital &rarr;</a>
+    <a href="https://github.com/0-CYBERDYNE-SYSTEMS-0" target="_blank" rel="noopener">GitHub &rarr;</a>
     <a href="#repos">Browse repositories &rarr;</a>
   </div>
 </header>
@@ -271,6 +326,7 @@ HTML = f'''<!DOCTYPE html>
     <div class="chip" data-f="Agents and Harnesses">Agents</div>
     <div class="chip" data-f="Hermes">Hermes</div>
     <div class="chip" data-f="Terminal, Themes and Dev Tools">Terminal</div>
+    <div class="chip" data-f="Products and Apps">Products</div>
     <div class="chip" data-f="Sites and Publications">Sites</div>
     <div class="chip" data-f="Meta and Assets">Meta</div>
   </div>

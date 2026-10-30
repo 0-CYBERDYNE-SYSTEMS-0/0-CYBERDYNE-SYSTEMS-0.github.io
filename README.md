@@ -8,7 +8,7 @@ served by GitHub Pages from `main`.
 
 ## Contents
 
-- **Live sites** — the four published GitHub Pages sites on this account.
+- **Live sites** — every GitHub Pages site on this account, discovered from the Pages API.
 - **Public repositories** — all public repos, grouped by project family, with client-side
   filter and search.
 
@@ -22,7 +22,15 @@ python3 build_hub.py            # uses the cached gh output
 python3 build_hub.py --fresh    # re-queries the GitHub API first
 ```
 
-Requires `gh` authenticated as `0-CYBERDYNE-SYSTEMS-0`.
+Requires `gh` authenticated as `0-CYBERDYNE-SYSTEMS-0`. The live-site list is not hardcoded:
+it probes `GET /repos/{owner}/{repo}/pages` for every public repo, so a new Pages site appears on
+the next run without editing this file.
+
+## Automatic refresh
+
+`.github/workflows/refresh.yml` runs the generator daily at 06:17 UTC, on pushes to `main` that
+are not index updates, and on manual dispatch. It commits `index.html` only when the generated
+output actually changed.
 
 ## Not published here
 
