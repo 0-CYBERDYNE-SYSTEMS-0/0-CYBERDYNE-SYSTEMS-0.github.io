@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate the 0-CYBERDYNE-SYSTEMS-0.github.io hub page from live GitHub data."""
-import json, html, re, datetime, pathlib, sys, os, subprocess, concurrent.futures, urllib.request
+import json, html, re, datetime, pathlib, sys, os, subprocess, concurrent.futures, urllib.request, urllib.error
 
 SCRATCH = pathlib.Path(os.environ.get("HUB_CACHE_DIR", "/Users/scrimwiggins/.hermes/cache/scratch"))
 OUT_DIR = pathlib.Path(__file__).resolve().parent if (pathlib.Path(__file__).resolve().parent / "index.html").exists() \
@@ -58,12 +58,16 @@ def _pages(repo):
 
 
 def _alive(url):
+    """Skip only pages that are definitively retired (404/410). A network flake must not
+    drop a live site from the index, and a 5xx is still a published site."""
     try:
         req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "hub-index"})
         with urllib.request.urlopen(req, timeout=12) as r:
-            return r.status == 200
+            return r.status < 400
+    except urllib.error.HTTPError as e:
+        return e.code not in (404, 410)
     except Exception:
-        return False
+        return True
 
 
 def discover_sites():
