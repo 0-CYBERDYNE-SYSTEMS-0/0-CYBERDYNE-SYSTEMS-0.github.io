@@ -5,7 +5,7 @@
   "blurb": "This page. Links every live site and public repository on the account; filterable, and regenerated from live GitHub data.",
   "kind": "Hub",
   "source": "main",
-  "updated": "2026-10-08"
+  "updated": "2026-10-30"
  },
  {
   "slug": "split-landing-pages",
@@ -14,38 +14,6 @@
   "kind": "Product pages",
   "source": "main",
   "updated": "2026-10-30"
- },
- {
-  "slug": "ff-land-plan",
-  "title": "FarmFriend Land Plan",
-  "blurb": "Draw the beds the way they sit on the ground. One cell is 25 cm; the plan stays on your computer.",
-  "kind": "Product page",
-  "source": "main",
-  "updated": "2026-10-29"
- },
- {
-  "slug": "desmond-digital",
-  "title": "Desmond Digital",
-  "blurb": "The agency site. Headless autonomous agents that run unattended for days. Manifesto, architecture, pricing, services.",
-  "kind": "Company site",
-  "source": "main",
-  "updated": "2026-04-16"
- },
- {
-  "slug": "farmfriend-page",
-  "title": "FarmFriend Consulting",
-  "blurb": "One-page consulting card: AI and software development, consultation booking, direct links out.",
-  "kind": "One-pager",
-  "source": "gh-pages",
-  "updated": "2026-04-16"
- },
- {
-  "slug": "farmfriend-landing",
-  "title": "FarmFriend \u2014 Environmental Controller",
-  "blurb": "The product page for the FarmFriend environmental controller. Smart plugs from any store, no subscriptions, pricing and pre-order.",
-  "kind": "Product landing",
-  "source": "master",
-  "updated": "2026-04-16"
  },
  {
   "slug": "sw33p3r",

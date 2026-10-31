@@ -32,6 +32,14 @@ the next run without editing this file.
 are not index updates, and on manual dispatch. It commits `index.html` only when the generated
 output actually changed.
 
+## Retired sites
+
+Pages was disabled on `farmfriend-landing`, `desmond-digital`, and `ff-land-plan`; their URLs now
+404 and the repos are untouched. GitHub refused deactivation for `farmfriend-page` ("Deactivating
+GitHub pages for this repository is not allowed"), so its Pages source points at an empty `retired`
+branch: the URL 404s and no build runs. The generator verifies each discovered URL actually returns
+200, so a pages-enabled repo that is not serving is skipped rather than listed.
+
 ## Not published here
 
 Pages on this account is on the GitHub Free plan, which allows Pages in **public repositories

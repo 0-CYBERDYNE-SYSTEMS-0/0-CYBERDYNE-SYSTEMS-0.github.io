@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate the 0-CYBERDYNE-SYSTEMS-0.github.io hub page from live GitHub data."""
-import json, html, re, datetime, pathlib, sys, os, subprocess, concurrent.futures
+import json, html, re, datetime, pathlib, sys, os, subprocess, concurrent.futures, urllib.request
 
 SCRATCH = pathlib.Path(os.environ.get("HUB_CACHE_DIR", "/Users/scrimwiggins/.hermes/cache/scratch"))
 OUT_DIR = pathlib.Path(__file__).resolve().parent if (pathlib.Path(__file__).resolve().parent / "index.html").exists() \
@@ -57,6 +57,15 @@ def _pages(repo):
         return None
 
 
+def _alive(url):
+    try:
+        req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "hub-index"})
+        with urllib.request.urlopen(req, timeout=12) as r:
+            return r.status == 200
+    except Exception:
+        return False
+
+
 def discover_sites():
     names = sorted(pub)
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
@@ -64,8 +73,12 @@ def discover_sites():
     rows = []
     for name in names:
         d = pages.get(name) or {}
-        if name != "0-CYBERDYNE-SYSTEMS-0.github.io" and not d.get("html_url"):
-            continue
+        if name != "0-CYBERDYNE-SYSTEMS-0.github.io":
+            if not d.get("html_url"):
+                continue
+            if not _alive(d["html_url"]):
+                print("WARN: pages enabled but not serving, skipped:", name, file=sys.stderr)
+                continue
         meta = SITE_META.get(name)
         if meta:
             title, kind, blurb = meta
@@ -293,8 +306,8 @@ HTML = f'''<!DOCTYPE html>
 <header>
   <p class="kicker">Index</p>
   <h1>0-CYBERDYNE-SYSTEMS-0<br><span class="thin">Everything published, in one place.</span></h1>
-  <p class="lede">Live sites and public repositories. FarmFriend runs on the farm; Desmond Digital
-  took the same machinery to the factory; the rest is tooling — agents, harnesses, terminal work.</p>
+  <p class="lede">The live sites that matter, plus every public repository on the account.
+  Product pages, field docs, and the tooling behind them.</p>
   <div class="stats">
     <div class="stat"><b>{len(LIVE)}</b><span>Live sites</span></div>
     <div class="stat"><b>{n_pub}</b><span>Public repos</span></div>
@@ -303,10 +316,7 @@ HTML = f'''<!DOCTYPE html>
   <div class="toplinks">
     <a href="#live">All {len(LIVE)} live sites &darr;</a>
     <a href="https://0-cyberdyne-systems-0.github.io/split-landing-pages/" target="_blank" rel="noopener">Product pages &rarr;</a>
-    <a href="https://0-cyberdyne-systems-0.github.io/ff-land-plan/" target="_blank" rel="noopener">Land Plan &rarr;</a>
     <a href="https://0-cyberdyne-systems-0.github.io/sw33p3r/" target="_blank" rel="noopener">Field docs &rarr;</a>
-    <a href="https://farm-friend.com" target="_blank" rel="noopener">farm-friend.com &rarr;</a>
-    <a href="https://desmond.digital" target="_blank" rel="noopener">desmond.digital &rarr;</a>
     <a href="https://github.com/0-CYBERDYNE-SYSTEMS-0" target="_blank" rel="noopener">GitHub &rarr;</a>
     <a href="#repos">Browse repositories &rarr;</a>
   </div>

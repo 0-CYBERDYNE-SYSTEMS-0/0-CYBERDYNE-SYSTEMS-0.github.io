@@ -8,16 +8,15 @@ AI systems engineer building autonomous agents, precision-agriculture tooling, a
 interfaces. I work across the stack — from Rust services and TypeScript runtimes to Python agent
 frameworks and macOS automation.
 
-**7** live sites &nbsp;·&nbsp; **82** public repositories &nbsp;·&nbsp; building since **2023**
+**3** live sites &nbsp;·&nbsp; **82** public repositories &nbsp;·&nbsp; building since **2023**
 
 ### [**→ Browse everything: 0-cyberdyne-systems-0.github.io**](https://0-cyberdyne-systems-0.github.io/)
 
 Live sites and all 82 public repositories, filterable. Everything below is on that page too.
 
 **Start here:** [Product pages](https://0-cyberdyne-systems-0.github.io/split-landing-pages/) ·
-[FarmFriend Land Plan](https://0-cyberdyne-systems-0.github.io/ff-land-plan/) ·
-[Desmond Digital](https://0-cyberdyne-systems-0.github.io/desmond-digital/) ·
-[Field docs](https://0-cyberdyne-systems-0.github.io/sw33p3r/)
+[Field docs](https://0-cyberdyne-systems-0.github.io/sw33p3r/) ·
+[The Index](https://0-cyberdyne-systems-0.github.io/)
 
 ---
 
@@ -27,10 +26,6 @@ Live sites and all 82 public repositories, filterable. Everything below is on th
 |---|---|---|
 | [**The Index — you are here**](https://0-cyberdyne-systems-0.github.io/) | `Hub` | This page. Links every live site and public repository on the account; filterable, and regenerated from live GitHub data. |
 | [**Product pages — Quorum, Lucida, Studio**](https://0-cyberdyne-systems-0.github.io/split-landing-pages/) | `Product pages` | Three product pages built from real screenshots: an LLM roundtable, a page-by-page PDF teacher, and a natural-language creative coding workbench. |
-| [**FarmFriend Land Plan**](https://0-cyberdyne-systems-0.github.io/ff-land-plan/) | `Product page` | Draw the beds the way they sit on the ground. One cell is 25 cm; the plan stays on your computer. |
-| [**Desmond Digital**](https://0-cyberdyne-systems-0.github.io/desmond-digital/) | `Company site` | The agency site. Headless autonomous agents that run unattended for days. Manifesto, architecture, pricing, services. |
-| [**FarmFriend Consulting**](https://0-cyberdyne-systems-0.github.io/farmfriend-page/) | `One-pager` | One-page consulting card: AI and software development, consultation booking, direct links out. |
-| [**FarmFriend — Environmental Controller**](https://0-cyberdyne-systems-0.github.io/farmfriend-landing/) | `Product landing` | The product page for the FarmFriend environmental controller. Smart plugs from any store, no subscriptions, pricing and pre-order. |
 | [**sw33p3r — Field Docs**](https://0-cyberdyne-systems-0.github.io/sw33p3r/) | `Artifact docs` | The published artifact set for the Flipper Zero counter-surveillance suite: room-sweep control map, printable field guide, hardware alternatives. |
 
 ---
