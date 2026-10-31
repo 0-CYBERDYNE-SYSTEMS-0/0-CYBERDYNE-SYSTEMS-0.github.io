@@ -34,7 +34,7 @@ Live sites and all 82 public repositories, filterable. Everything below is on th
 
 
 <details open>
-<summary><b>FarmFriend &amp; Agriculture</b> &nbsp;<code>16</code></summary>
+<summary><b>FarmFriend &amp; Agriculture</b> &nbsp;<code>18</code></summary>
 <br>
 
 | Repository | About |
@@ -44,6 +44,8 @@ Live sites and all 82 public repositories, filterable. Everything below is on th
 | [**CRS-01**](https://github.com/0-CYBERDYNE-SYSTEMS-0/CRS-01) | CRS-01 — Cannabis Research Sentinel. Graph-first intelligence layer for cannabis breeding knowledge: evidence-backed… |
 | [**farm-lead-automation**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farm-lead-automation) | Automated farm lead generation for FFT_nano AI software & consulting in Oregon & Washington |
 | [**farm-lead-generation**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farm-lead-generation) | Automated farm lead generation pipeline for FFT_nano outreach |
+| [**farmfriend-landing**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farmfriend-landing) | FarmFriend landing page and product showcase |
+| [**farmfriend-page**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farmfriend-page) | FarmFriend Consulting - Personal AI Assistant & Software Development |
 | [**FarmFriend-Terminal-React**](https://github.com/0-CYBERDYNE-SYSTEMS-0/FarmFriend-Terminal-React) | Terminal-based React application for FarmFriend |
 | [**FF-Agri-Cal-Pro**](https://github.com/0-CYBERDYNE-SYSTEMS-0/FF-Agri-Cal-Pro) | You put the field work on the calendar. The forecast sits beside it. |
 | [**FF-Automator**](https://github.com/0-CYBERDYNE-SYSTEMS-0/FF-Automator) | macOS automation framework with AI-powered natural language control — native Go/Wails app + web interface |
@@ -147,15 +149,12 @@ Live sites and all 82 public repositories, filterable. Everything below is on th
 </details>
 
 <details>
-<summary><b>Sites &amp; Publications</b> &nbsp;<code>7</code></summary>
+<summary><b>Sites &amp; Publications</b> &nbsp;<code>4</code></summary>
 <br>
 
 | Repository | About |
 |---|---|
 | [**0-CYBERDYNE-SYSTEMS-0.github.io**](https://github.com/0-CYBERDYNE-SYSTEMS-0/0-CYBERDYNE-SYSTEMS-0.github.io) | Index of every live site and public repository on this account. |
-| [**desmond-digital**](https://github.com/0-CYBERDYNE-SYSTEMS-0/desmond-digital) | Anti-wrapper autonomous agent framework. Built on a farm, now scaling to factories. |
-| [**farmfriend-landing**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farmfriend-landing) | FarmFriend landing page and product showcase |
-| [**farmfriend-page**](https://github.com/0-CYBERDYNE-SYSTEMS-0/farmfriend-page) | FarmFriend Consulting - Personal AI Assistant & Software Development |
 | [**ff-article-preview**](https://github.com/0-CYBERDYNE-SYSTEMS-0/ff-article-preview) | AI-generated article preview renderer for FarmFriend content pipeline |
 | [**split-landing-pages**](https://github.com/0-CYBERDYNE-SYSTEMS-0/split-landing-pages) | Product pages for Quorum, Lucida, and Possibility Studio. Real screenshots, no build step. |
 | [**sw33p3r**](https://github.com/0-CYBERDYNE-SYSTEMS-0/sw33p3r) | Flipper Zero counter-surveillance suite: Sub-GHz RF sweep, WiFi/BLE (Marauder via BFFB), GPS, and safety-gated RF car… |
@@ -163,7 +162,7 @@ Live sites and all 82 public repositories, filterable. Everything below is on th
 </details>
 
 <details>
-<summary><b>Meta &amp; Assets</b> &nbsp;<code>7</code></summary>
+<summary><b>Meta &amp; Assets</b> &nbsp;<code>8</code></summary>
 <br>
 
 | Repository | About |
@@ -173,6 +172,7 @@ Live sites and all 82 public repositories, filterable. Everything below is on th
 | [**battleships**](https://github.com/0-CYBERDYNE-SYSTEMS-0/battleships) | — |
 | [**brand-assets**](https://github.com/0-CYBERDYNE-SYSTEMS-0/brand-assets) | — |
 | [**CC_Leak**](https://github.com/0-CYBERDYNE-SYSTEMS-0/CC_Leak) | System instructions and tools for AI assistant |
+| [**desmond-digital**](https://github.com/0-CYBERDYNE-SYSTEMS-0/desmond-digital) | Anti-wrapper autonomous agent framework. Built on a farm, now scaling to factories. |
 | [**omarchy_**](https://github.com/0-CYBERDYNE-SYSTEMS-0/omarchy_) | Index of Omarchy add-ons. Installable plugins live in their own repos. |
 | [**omarchy_clipboard**](https://github.com/0-CYBERDYNE-SYSTEMS-0/omarchy_clipboard) | Omarchy shell plugin: clipboard history with pins, boards, snippets, and a stack. |
 

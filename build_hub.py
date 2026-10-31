@@ -111,6 +111,7 @@ GROUPS = [
         "FFT_model_tune", "FF-Automator",
         "farm-lead-automation", "farm-lead-generation",
         "clockwork-ai", "visionbrain", "aerial-intelligence-pipeline", "CRS-01",
+        "farmfriend-landing", "farmfriend-page",
     ]),
     ("Agents &amp; Harnesses", [
         "ruflo", "qm", "fable-os", "tiny_agent", "auto-experiment", "autonomous-macos-agent",
@@ -134,11 +135,10 @@ GROUPS = [
         "quorum", "lucida", "possibility-studio",
     ]),
     ("Sites &amp; Publications", [
-        "0-CYBERDYNE-SYSTEMS-0.github.io", "split-landing-pages", "farmfriend-landing",
-        "farmfriend-page", "desmond-digital", "sw33p3r", "ff-article-preview",
+        "0-CYBERDYNE-SYSTEMS-0.github.io", "split-landing-pages", "sw33p3r", "ff-article-preview",
     ]),
     ("Meta &amp; Assets", [
-        ".github", "0-CYBERDYNE-SYSTEMS-0", "brand-assets", "battleships",
+        ".github", "0-CYBERDYNE-SYSTEMS-0", "brand-assets", "battleships", "desmond-digital",
         "omarchy_", "omarchy_clipboard", "CC_Leak",
     ]),
 ]
