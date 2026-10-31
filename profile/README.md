@@ -205,6 +205,6 @@ Live sites and all 82 public repositories, filterable. Everything below is on th
 
 - **Email**: [craigs.seller.sixx@gmail.com](mailto:craigs.seller.sixx@gmail.com)
 - **Twitter / X**: [@twodogseeds](https://x.com/twodogseeds)
-- **Web**: [farm-friend.com](https://farm-friend.com) &nbsp;·&nbsp; [desmond.digital](https://desmond.digital)
+- **Web**: [farm-friend.com](https://farm-friend.com) &nbsp;·&nbsp; [All live sites](https://0-cyberdyne-systems-0.github.io/)
 
 <sub>Index generated 2026-10-30 · 82 public repositories · regenerate with <code>build_profile.py</code></sub>
