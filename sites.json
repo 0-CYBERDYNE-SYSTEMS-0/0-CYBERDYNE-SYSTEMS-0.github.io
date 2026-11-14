@@ -5,7 +5,7 @@
   "blurb": "This page. Links every live site and public repository on the account; filterable, and regenerated from live GitHub data.",
   "kind": "Hub",
   "source": "main",
-  "updated": "2026-11-12"
+  "updated": "2026-11-13"
  },
  {
   "slug": "split-landing-pages",
@@ -14,6 +14,14 @@
   "kind": "Product pages",
   "source": "main",
   "updated": "2026-10-30"
+ },
+ {
+  "slug": "ff-land-plan",
+  "title": "FarmFriend Land Plan",
+  "blurb": "Draw the beds the way they sit on the ground. One cell is 25 cm; the plan stays on your computer.",
+  "kind": "Product page",
+  "source": "main",
+  "updated": "2026-11-14"
  },
  {
   "slug": "sw33p3r",
